@@ -33,25 +33,25 @@ const aliases = {
 // Add gift ideas here whenever you're ready.
 // Use each recipient's canonical name as the key.
 const giftIdeas = {
-  "Janek": "",
-  "Ludvik": "",
-  "Ondrej": "",
-  "Svetlana": "",
-  "Valerie": "",
-  "Marie": "",
-  "Sabina": "",
-  "Lan": "",
-  "Jirka": "",
-  "Pepa": "",
-  "Elif": "",
-  "Imge": "",
-  "Yuliya": "",
-  "Petr": "",
-  "Eva": "",
-  "Jasper": "",
-  "Andreas": "",
-  "Ludek": "",
-  "Julia": ""
+  "Janek": "wine, archi book, bike related stuff? ",
+  "Ludvik": "anything fun, wine",
+  "Ondrej": "he's a mysterious man",
+  "Svetlana": "make-up, cosmetics, DIY",
+  "Valerie": "outdoorsy things?",
+  "Marie": "easy to please, no wrong answers",
+  "Sabina": "horses, horse, horse stuff",
+  "Lan": "bottle, anything silly",
+  "Jirka": "loves Italy so think along those lines",
+  "Pepa": "v easy to please, the cheaper the better, the stupider the better",
+  "Elif": "bottle, make up, her gym crush",
+  "Imge": "DIY, fun stuff, silly stuff",
+  "Yuliya": "mushrooms, boxing",
+  "Petr": "matcha, healthy foods?",
+  "Eva": "anything for Fany, bottle",
+  "Jasper": "sustainable stuff, small business, finish his house for him",
+  "Andreas": "belgian beers, workshops",
+  "Ludek": "bottle?",
+  "Julia": "workout, healthy stuff"
 };
 
 const normalizeName = (name) =>
