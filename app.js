@@ -116,7 +116,7 @@ function makeFace(name) {
   initials.setAttribute("aria-hidden", "true");
 
   const image = document.createElement("img");
-  image.src = `./images/faces/${encodeURIComponent(name)}.jpg`;
+  image.src = `./images/faces/${encodeURIComponent(name)}.png`;
   image.alt = `${name}'s photo`;
   image.loading = "eager";
   image.onerror = () => image.remove();
