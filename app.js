@@ -218,7 +218,7 @@ async function spin() {
   resultPanel.hidden = false;
   updateGiftIdeas(recipient);
 
-  machineStatus.textContent = "JACKPOT! YOUR SECRET IS REVEALED.";
+  machineStatus.textContent = "JACKPOT?";
   spinLabel.textContent = "YOUR DRAW IS COMPLETE";
   hasPlayed = true;
   isSpinning = false;
