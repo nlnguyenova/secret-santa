@@ -1,0 +1,95 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#350c18">
+  <title>SSA Secret Santa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="holiday-lights" aria-hidden="true"></div>
+  <div class="background-stars" aria-hidden="true"></div>
+
+  <main class="casino">
+    <header class="masthead">
+      <p class="eyebrow">SSA PRESENTS</p>
+      <h1>Secret <span>Santa</span></h1>
+      <p class="subtitle">THE MOST WONDERFUL SPIN OF THE YEAR</p>
+      <div class="title-rule"><span>✦</span></div>
+    </header>
+
+    <section class="game-layout" aria-label="Secret Santa slot machine">
+      <aside class="gift-panel">
+        <div class="panel-top">✦ YOUR MISSION ✦</div>
+        <div class="gift-icon" aria-hidden="true">🎁</div>
+        <h2>Gift ideas</h2>
+        <p class="gift-intro">A little inspiration for your lucky recipient.</p>
+        <div id="gift-ideas" class="gift-ideas">
+          Your gift ideas will appear here.
+        </div>
+        <p class="gift-footnote">Thoughtful gifts. Questionable wrapping.</p>
+      </aside>
+
+      <section class="machine-area">
+        <div class="jackpot-lights" aria-hidden="true"></div>
+        <div class="machine">
+          <div class="machine-heading">
+            <span>★</span>
+            <h2>HOLIDAY JACKPOT</h2>
+            <span>★</span>
+          </div>
+
+          <div class="reels-frame" aria-label="Spinning recipient faces">
+            <div class="reel" id="reel-1"><div class="reel-face">?</div></div>
+            <div class="reel" id="reel-2"><div class="reel-face">?</div></div>
+            <div class="reel" id="reel-3"><div class="reel-face">?</div></div>
+          </div>
+
+          <p id="machine-status" class="machine-status" aria-live="polite">
+            YOUR HOLIDAY FATE AWAITS
+          </p>
+
+          <button id="spin-button" class="spin-button" type="button" disabled>
+            <span class="button-star">✦</span>
+            <span id="spin-label">Enter your name to play</span>
+            <span class="button-star">✦</span>
+          </button>
+
+          <div id="result" class="result" aria-live="polite" hidden>
+            <p class="result-kicker">THE UNIVERSE HAS DECIDED</p>
+            <h2 id="winner-name"></h2>
+            <p class="result-note">You know what to do. Keep it secret!</p>
+          </div>
+        </div>
+        <p class="machine-disclaimer">NO CASH PRIZES · JUST CHRISTMAS CHEER</p>
+      </section>
+    </section>
+
+    <footer>
+      <span>MADE WITH ✦ HOLIDAY MISCHIEF</span>
+    </footer>
+  </main>
+
+  <div id="name-modal" class="modal" role="dialog"
+       aria-modal="true" aria-labelledby="modal-title">
+    <form id="name-form" class="modal-card">
+      <div class="modal-star" aria-hidden="true">✦</div>
+      <p class="eyebrow">STEP RIGHT UP</p>
+      <h2 id="modal-title">Enter your name to play</h2>
+      <p>Your Secret Santa fate awaits.</p>
+      <label for="player-name">Your name</label>
+      <input id="player-name" name="player-name" autocomplete="name"
+             placeholder="Enter your name..." maxlength="80" required>
+      <p id="name-message" class="form-message" role="status"></p>
+      <button class="play-button" type="submit">LET THE MAGIC BEGIN</button>
+      <p class="modal-small">One player. One recipient. One very secret mission.</p>
+    </form>
+  </div>
+</body>
+</html>
