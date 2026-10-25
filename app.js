@@ -30,10 +30,8 @@ const aliases = {
   "Fany": "Eva"
 };
 
-// Add gift ideas here whenever you're ready.
-// Use each recipient's canonical name as the key.
 const giftIdeas = {
-  "Janek": "wine, archi book, bike related stuff? ",
+  "Janek": "wine, archi book, bike related stuff?",
   "Ludvik": "anything fun, wine",
   "Ondrej": "he's a mysterious man",
   "Svetlana": "make-up, cosmetics, DIY",
@@ -54,9 +52,8 @@ const giftIdeas = {
   "Julia": "workout, healthy stuff"
 };
 
-const normalizeName = (name) =>
-  name
-    .normalize("NFD")
+const normalizeName = name =>
+  name.normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .trim()
     .replace(/\s+/g, " ")
@@ -70,8 +67,7 @@ const assignmentLookup = new Map(
 
 const aliasLookup = new Map(
   Object.entries(aliases).map(([alias, canonical]) => [
-    normalizeName(alias),
-    canonical
+    normalizeName(alias), canonical
   ])
 );
 
@@ -106,31 +102,20 @@ function makeFace(name) {
   const face = document.createElement("div");
   face.className = "reel-face";
 
-  const initials = document.createElement("div");
-  initials.textContent = name
-    .split(/\s+/)
-    .map(part => part[0] || "")
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-  initials.setAttribute("aria-hidden", "true");
-
   const image = document.createElement("img");
   image.src = `./images/faces/${encodeURIComponent(name)}.png`;
-  image.alt = `${name}'s photo`;
-  image.loading = "eager";
+  image.alt = name;
+  image.draggable = false;
+
+  // Keep the face blank if a photo is missing; no initials.
   image.onerror = () => image.remove();
 
   const label = document.createElement("div");
   label.className = "face-label";
   label.textContent = name;
 
-  face.append(initials, image, label);
+  face.append(image, label);
   return face;
-}
-
-function showFace(reel, name) {
-  reel.replaceChildren(makeFace(name));
 }
 
 function randomName() {
@@ -144,10 +129,8 @@ function wait(ms) {
 }
 
 function updateGiftIdeas(recipient) {
-  const ideas = giftIdeas[recipient]?.trim();
-
-  giftPanel.textContent = ideas ||
-    "Gift ideas coming soon! Add this person's ideas in app.js when you're ready.";
+  giftPanel.textContent = giftIdeas[recipient]?.trim() ||
+    "Gift ideas coming soon!";
 }
 
 function enterGame(name) {
@@ -161,8 +144,7 @@ function enterGame(name) {
 nameForm.addEventListener("submit", event => {
   event.preventDefault();
 
-  const enteredName = playerInput.value;
-  const canonical = findCanonicalName(enteredName);
+  const canonical = findCanonicalName(playerInput.value);
 
   if (!canonical) {
     nameMessage.textContent =
@@ -172,10 +154,63 @@ nameForm.addEventListener("submit", event => {
   }
 
   nameMessage.textContent = "";
-
-  // Use the canonical name, even when an alias was entered.
   enterGame(canonical);
 });
+
+/*
+  Build a vertical strip of faces and animate it upward.
+  Each face occupies exactly one reel-window height.
+*/
+async function rollReel(reel, recipient, duration, delay = 0) {
+  await wait(delay);
+
+  const windowHeight = reel.clientHeight;
+
+  if (!windowHeight) {
+    showFinalFace(reel, recipient);
+    return;
+  }
+
+  const strip = document.createElement("div");
+  strip.className = "reel-strip";
+
+  // Many faces give the impression of a continuous rolling reel.
+  const rollNames = Array.from(
+    { length: 32 },
+    () => randomName()
+  );
+
+  // The assigned recipient is always the final face.
+  rollNames.push(recipient);
+
+  rollNames.forEach(name => {
+    const face = makeFace(name);
+    face.style.height = `${windowHeight}px`;
+    face.style.minHeight = `${windowHeight}px`;
+    strip.appendChild(face);
+  });
+
+  reel.replaceChildren(strip);
+
+  // Start at the top and move the strip upward.
+  strip.style.transform = "translateY(0)";
+  strip.getBoundingClientRect();
+
+  strip.style.transition = `transform ${duration}ms cubic-bezier(0.12, 0.72, 0.12, 1)`;
+  strip.style.transform =
+    `translateY(-${windowHeight * (rollNames.length - 1)}px)`;
+
+  await wait(duration);
+
+  // Leave only the final assigned face visible after the roll.
+  showFinalFace(reel, recipient);
+}
+
+function showFinalFace(reel, recipient) {
+  const face = makeFace(recipient);
+  face.style.height = "100%";
+  reel.replaceChildren(face);
+}
 
 async function spin() {
   if (!playerName || isSpinning || hasPlayed) return;
@@ -187,31 +222,20 @@ async function spin() {
   spinButton.disabled = true;
   spinLabel.textContent = "THE REELS ARE SPINNING...";
   machineStatus.textContent = "FINGERS CROSSED...";
-
   resultPanel.hidden = true;
   winnerName.textContent = "";
+
   reels.forEach(reel => reel.classList.add("spinning"));
 
-  // Each reel spins independently and stops at the assigned recipient.
-  const stopTimes = [1700, 2350, 3000];
+  // Each reel starts and stops after the previous one.
+  await Promise.all([
+    rollReel(reels[0], recipient, 2600, 0),
+    rollReel(reels[1], recipient, 3300, 350),
+    rollReel(reels[2], recipient, 4000, 700)
+  ]);
 
-  const reelAnimations = reels.map(async (reel, index) => {
-    let elapsed = 0;
-    const tickLength = 75;
+  reels.forEach(reel => reel.classList.remove("spinning"));
 
-    while (elapsed < stopTimes[index]) {
-      showFace(reel, randomName());
-      await wait(tickLength);
-      elapsed += tickLength;
-    }
-
-    showFace(reel, recipient);
-    reel.classList.remove("spinning");
-  });
-
-  await Promise.all(reelAnimations);
-
-  // Dramatic reveal after the final reel stops.
   await wait(350);
 
   winnerName.textContent = recipient;
@@ -226,15 +250,13 @@ async function spin() {
 
 spinButton.addEventListener("click", spin);
 
-// Initial reels show placeholders until a player enters their name.
 reels.forEach(reel => {
-  const face = document.createElement("div");
-  face.className = "reel-face";
-  face.textContent = "✦";
-  reel.replaceChildren(face);
+  const placeholder = document.createElement("div");
+  placeholder.className = "reel-face";
+  placeholder.textContent = "✦";
+  reel.replaceChildren(placeholder);
 });
 
-// Focus the name field when the page opens.
 window.addEventListener("load", () => {
   playerInput.focus();
 });
