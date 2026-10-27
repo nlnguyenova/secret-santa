@@ -51,7 +51,7 @@ body::before {
   height: 20px;
   width: 100%;
   background:
-    radial-gradient(ellipse at center, #fff3bf 0 2px, #e6b956 3px, transparent 7px)
+    radial-gradient(ellipse at center, #fff3bf 0 5px, #e6b956 8px, transparent 12px)
     0 0 / 48px 18px repeat-x;
   filter: drop-shadow(0 0 5px #f4c96d);
   opacity: .9;
@@ -530,7 +530,7 @@ footer {
   .gift-icon { margin-top: 12px; }
   .gift-ideas { min-height: 60px; }
   .reels-frame { gap: 5px; padding: 7px; }
-  .reel { height: clamp(145px, 44vw, 220px); }
+  .reel { height: clamp(145px, 44vw, 250px); }
   .machine { padding: 24px 16px; }
   .subtitle { letter-spacing: .12em; }
 }
