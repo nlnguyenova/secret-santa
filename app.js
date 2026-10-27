@@ -87,7 +87,7 @@ const modal = document.getElementById("name-modal");
 const nameForm = document.getElementById("name-form");
 const playerInput = document.getElementById("player-name");
 const nameMessage = document.getElementById("name-message");
-const spinButton = document.getElementById("spin-button");
+const spinButton = document.getElementById("lever-button");
 const spinLabel = document.getElementById("spin-label");
 const machineStatus = document.getElementById("machine-status");
 const resultPanel = document.getElementById("result");
@@ -239,7 +239,7 @@ async function spin() {
     rollReel(reels[1], recipient, 3300, 350),
     rollReel(reels[2], recipient, 4000, 700)
   ]);
-
+  spinButton.classList.add("pulled");
   reels.forEach(reel => reel.classList.remove("spinning"));
 
   await wait(350);
@@ -247,7 +247,8 @@ async function spin() {
   winnerName.textContent = recipient;
   resultPanel.hidden = false;
   updateGiftIdeas(recipient);
-
+  spinButton.classList.remove("pulled");
+  
   machineStatus.textContent = "JACKPOT?";
   spinLabel.textContent = "YOUR DRAW IS COMPLETE";
   hasPlayed = true;
@@ -255,10 +256,6 @@ async function spin() {
 }
 
 lever.addEventListener("click", pullLever);
-
-lever.classList.add("pulled");
-
-lever.classList.remove("pulled");
 
 reels.forEach(reel => {
   const placeholder = document.createElement("div");
