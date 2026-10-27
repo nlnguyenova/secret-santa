@@ -254,7 +254,11 @@ async function spin() {
   isSpinning = false;
 }
 
-spinButton.addEventListener("click", spin);
+lever.addEventListener("click", pullLever);
+
+lever.classList.add("pulled");
+
+lever.classList.remove("pulled");
 
 reels.forEach(reel => {
   const placeholder = document.createElement("div");
