@@ -1,7 +1,7 @@
 
 const assignments = {
-  "Janek123": "Ludek",
-  "Ludvik123": "Eva",
+  "Janek": "Ludek",
+  "Ludvik": "Eva",
   "Ondrej": "Imge",
   "Svetlana": "Petr",
   "Valerie": "Marie",
@@ -9,7 +9,7 @@ const assignments = {
   "Sabina": "Jasper",
   "Lan123": "Pepa",
   "Jirka": "Svetlana",
-  "Pepa123": "Andreas",
+  "Pepa": "Andreas",
   "Elif": "Lan",
   "Imge": "Julia",
   "Yuliya": "Janek",
