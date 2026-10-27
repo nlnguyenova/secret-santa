@@ -1,24 +1,24 @@
 
 const assignments = {
-  "Janek": "Ludek",
-  "Ludvik": "Eva",
-  "Ondrej": "Imge",
-  "Svetlana": "Petr",
-  "Valerie": "Marie",
-  "Marie": "Yuliya",
-  "Sabina": "Jasper",
-  "Lan123": "Pepa",
-  "Jirka": "Svetlana",
-  "Pepa": "Andreas",
-  "Elif": "Lan",
-  "Imge": "Julia",
-  "Yuliya": "Janek",
-  "Petr": "Sabina",
-  "Eva": "Ondrej",
-  "Jasper": "Ludvik",
-  "Andreas": "Valerie",
-  "Ludek": "Jirka",
-  "Julia": "Elif"
+  "Janek123": "Ludek",
+  "Ludvik123": "Eva",
+  "Ondrej456": "Imge",
+  "Svetlana456": "Petr",
+  "Valerie123": "Marie",
+  "Marie123": "Yuliya",
+  "Sabina123": "Jasper",
+  "Lan456": "Pepa",
+  "Jirka123": "Svetlana",
+  "Pepa456": "Andreas",
+  "Elif123": "Lan",
+  "Imge456": "Julia",
+  "Yuliya123": "Janek",
+  "Petr456": "Ondrej",
+  "Eva123": "Sabina",
+  "Jasper456": "Ludvik",
+  "Andreas123": "Valerie",
+  "Ludek123": "Jirka",
+  "Julia456": "Elif"
 };
 
 const aliases = {
@@ -71,11 +71,17 @@ const aliasLookup = new Map(
   ])
 );
 
-function findCanonicalName(input) {
-  const normalized = normalizeName(input);
-  const canonical = aliasLookup.get(normalized) || normalized;
-  return assignmentLookup.get(normalizeName(canonical)) || null;
+
+function normalise(raw) {
+  const entered = raw.trim().toLowerCase();
+
+  const login = Object.keys(loginNames).find(
+    key => key.toLowerCase() === entered
+  );
+
+  return login ? loginNames[login] : null;
 }
+
 
 const modal = document.getElementById("name-modal");
 const nameForm = document.getElementById("name-form");
