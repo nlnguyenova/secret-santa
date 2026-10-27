@@ -589,3 +589,93 @@ footer {
 .reel-face > div:not(.face-label) {
   display: none;
 }
+
+/* RETRO VEGAS SLOT MACHINE LEVER */
+.lever-button {
+  position: relative;
+  width: 90px;
+  height: 230px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+  filter: drop-shadow(0 0 10px #ffb52e66);
+}
+
+.lever-rod {
+  position: absolute;
+  left: 40px;
+  top: 35px;
+  width: 11px;
+  height: 155px;
+  border: 1px solid #ffe9a0;
+  border-radius: 8px;
+  transform-origin: 50% 8px;
+  transform: rotate(8deg);
+  background: linear-gradient(
+    90deg,
+    #70400e,
+    #fff5bd 25%,
+    #d49a32 50%,
+    #fff0a0 75%,
+    #70400e
+  );
+  box-shadow: 0 0 8px #ffc94b;
+  transition: transform 0.3s ease;
+}
+
+.lever-ball {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  left: 17px;
+  width: 58px;
+  height: 58px;
+  border: 3px solid #ffdf83;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 22%,
+    #fff6c7 0%,
+    #ff5744 22%,
+    #c60020 58%,
+    #4a0008 85%
+  );
+  box-shadow:
+    inset -6px -8px 10px #31000699,
+    0 0 0 3px #69000c,
+    0 0 18px #ffbd43;
+  transition: transform 0.3s ease;
+}
+
+.lever-base {
+  position: absolute;
+  left: 20px;
+  bottom: 8px;
+  width: 52px;
+  height: 28px;
+  border: 3px solid #f5d174;
+  border-radius: 8px 8px 13px 13px;
+  background: linear-gradient(90deg, #52000a, #edac35, #62000b);
+  box-shadow: 0 0 12px #ffbe3d;
+}
+
+/* The handle moves when the lever is pulled */
+.lever-button.pulled .lever-rod {
+  transform: rotate(-20deg);
+}
+
+.lever-button.pulled .lever-ball {
+  transform: translate(-8px, 19px);
+}
+
+.lever-button:hover .lever-ball {
+  box-shadow:
+    inset -6px -8px 10px #31000699,
+    0 0 0 3px #69000c,
+    0 0 26px #fff0a0;
+}
+
+.lever-button:disabled {
+  cursor: wait;
+}
