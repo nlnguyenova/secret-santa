@@ -1,24 +1,24 @@
 
 const assignments = {
-  "Janek123": "Ludek",
-  "Ludvik123": "Eva",
-  "Ondrej456": "Imge",
-  "Svetlana456": "Petr",
-  "Valerie123": "Marie",
-  "Marie123": "Yuliya",
-  "Sabina123": "Jasper",
-  "Lan456": "Pepa",
-  "Jirka123": "Svetlana",
-  "Pepa456": "Andreas",
-  "Elif123": "Lan",
-  "Imge456": "Julia",
-  "Yuliya123": "Janek",
-  "Petr456": "Ondrej",
-  "Eva123": "Sabina",
-  "Jasper456": "Ludvik",
-  "Andreas123": "Valerie",
-  "Ludek123": "Jirka",
-  "Julia456": "Elif"
+  "Janek123": "Elif",
+  "Ludvik123": "Jirka",
+  "Svetlana456": "Ludvik",
+  "Valerie123": "Eva",
+  "Marie123": "Janek",
+  "Sabina123": "Valerie",
+  "Lan456": "Svetlana",
+  "Jirka123": "Julia",
+  "Pepa456": "Marie",
+  "Elif123": "Ladka",
+  "Imge456": "Jasper",
+  "Yuliya123": "Lan",
+  "Petr456": "Yuliya",
+  "Eva123": "Pepa",
+  "Jasper456": "Andreas",
+  "Andreas123": "Sabina",
+  "Ludek123": "Petr",
+  "Julia456": "Imge",
+  "Ladka123": "Ludek"
 };
 
 const giftIdeas = {
