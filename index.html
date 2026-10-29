@@ -1,95 +1,65 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#350c18">
-  <title>SSA Secret Santa</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css">
-  <script src="./app.js" defer></script>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="theme-color" content="#100b0b"><title>SSA — Secret Santa</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="./styles.css"><script defer src="./app.js"></script>
 </head>
 <body>
-  <div class="holiday-lights" aria-hidden="true"></div>
-  <div class="background-stars" aria-hidden="true"></div>
-
-  <main class="casino">
-    <header class="masthead">
-      <p class="eyebrow">SSA PRESENTS</p>
-      <h1>Secret <span>Santa</span></h1>
-      <div class="title-rule"><span>✦</span></div>
-    </header>
-
-    <section class="game-layout" aria-label="Secret Santa slot machine">
-      <aside class="gift-panel">
-        <div class="panel-top">✦ YOUR MISSION ✦</div>
-        <div class="gift-icon" aria-hidden="true">🎁</div>
-        <h2>Gift ideas</h2>
-        <p class="gift-intro">A little inspiration for you.</p>
-        <div id="gift-ideas" class="gift-ideas">
-          Your gift ideas will appear here.
-        </div>
-        <p class="gift-footnote">Go silly!</p>
-      </aside>
-
-      <section class="machine-area">
-        <div class="jackpot-lights" aria-hidden="true"></div>
-        <div class="machine">
-          <div class="machine-heading">
-            <span>★</span>
-            <h2>HOLIDAY JACKPOT</h2>
-            <span>★</span>
-          </div>
-
-          <div class="reels-frame" aria-label="Spinning recipient faces">
-            <div class="reel" id="reel-1"><div class="reel-face">?</div></div>
-            <div class="reel" id="reel-2"><div class="reel-face">?</div></div>
-            <div class="reel" id="reel-3"><div class="reel-face">?</div></div>
-          </div>
-
-          <p id="machine-status" class="machine-status" aria-live="polite">
-            YOUR HOLIDAY FATE AWAITS
-          </p>
-
-          
-        <button id="lever-button" class="lever-button" type="button" aria-label="Pull lever to reveal your Secret Santa">
-          <span class="lever-ball"></span>
-          <span class="lever-rod"></span>
-          <span class="lever-base"></span>
-        </button>
-
-
-          <div id="result" class="result" aria-live="polite" hidden>
-            <p class="result-kicker">IT'S</p>
-            <h2 id="winner-name"></h2>
-            <p class="result-note">Now shush! and don't tell anyone...</p>
-          </div>
-        </div>
-        <p class="machine-disclaimer">NO CASH PRIZES, SORRY </p>
-      </section>
-    </section>
-
-    <footer>
-      <span>MADE WITH CHATGPT</span>
-    </footer>
-  </main>
-
-  <div id="name-modal" class="modal" role="dialog"
-       aria-modal="true" aria-labelledby="modal-title">
-    <form id="name-form" class="modal-card">
-      <div class="modal-star" aria-hidden="true">✦</div>
-      <p class="eyebrow">STEP RIGHT UP</p>
-      <h2 id="modal-title">Enter your name to play</h2>
-      <p>Your Secret Santa fate awaits.</p>
-      <label for="player-name">Your name</label>
-      <input id="player-name" name="player-name" autocomplete="name"
-             placeholder="Enter your name..." maxlength="80" required>
-      <p id="name-message" class="form-message" role="status"></p>
-      <button class="play-button" type="submit">LET'S GAMBLE</button>
-    </form>
+ <main class="stage">
+  <div class="curtain" aria-hidden="true"></div>
+  <div class="backdrop-title" aria-hidden="true">SSA</div>
+  <div class="scene">
+   <section class="machine-area" aria-label="Secret Santa slot machine">
+    <div class="machine">
+     <div class="machine-top">
+      <div class="marquee-bulbs" aria-hidden="true"></div>
+      <div class="neon-sign"><span>SECRET</span><span>SANTA</span></div>
+      <div class="marquee-stars" aria-hidden="true">✦ &nbsp; ✦ &nbsp; ✦</div>
+     </div>
+     <div class="machine-main">
+      <div class="chrome-window">
+       <div class="reels-frame" aria-label="Spinning recipient faces">
+        <div class="reel" id="reel-1"><div class="reel-face">✦</div></div>
+        <div class="reel" id="reel-2"><div class="reel-face">✦</div></div>
+        <div class="reel" id="reel-3"><div class="reel-face">✦</div></div>
+       </div>
+      </div>
+      <div class="machine-control-strip">
+       <span class="fake-button"></span><span class="fake-button"></span><span class="fake-button"></span><span class="fake-button"></span>
+       <span class="control-indicator">✦</span><span class="control-round"></span>
+      </div>
+      <p id="machine-status" class="machine-status" aria-live="polite">YOUR HOLIDAY FATE AWAITS</p>
+      <div id="result" class="result" aria-live="polite" hidden><p class="result-kicker">YOU GOT</p><h2 id="winner-name"></h2><p class="result-note">Shhh… keep it a secret!</p></div>
+      <div class="machine-base"><div class="coin-slot"></div><div class="base-light"></div></div>
+     </div>
+     <div class="lever-guide" aria-hidden="true"><span>PULL TO REVEAL</span><div class="arrow">↘</div></div>
+     <button id="lever-button" class="lever-button" type="button" aria-label="Pull lever to reveal your Secret Santa recipient">
+      <span class="lever-ball"></span><span class="lever-rod"></span><span class="lever-base"></span>
+     </button>
+    </div>
+    <p class="machine-disclaimer">ONE PULL · ONE SECRET · HAPPY GIFTING</p>
+   </section>
+   <aside class="gift-panel" aria-label="Gift inspiration">
+    <div class="gift-panel-inner"><div class="panel-top">✦ &nbsp; SECRET SANTA 2026 &nbsp; ✦</div>
+     <div class="gift-icon" aria-hidden="true">✳</div><h2>GIFT<br>IDEAS</h2>
+     <p class="gift-intro">A LITTLE INSPIRATION FOR YOUR SECRET MISSION.</p>
+     <div id="gift-ideas" class="gift-ideas">Your gift ideas will appear here once you've played.</div>
+     <p class="gift-footnote">MAKE IT FUN. MAKE IT PERSONAL.</p>
+    </div>
+   </aside>
   </div>
-</body>
-</html>
+  <footer>SSA <span>✳</span> SECRET SANTA</footer>
+ </main>
+ <div id="name-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <form id="name-form" class="modal-card"><p class="eyebrow">✦ &nbsp; YOU'RE INVITED &nbsp; ✦</p>
+   <h2 id="modal-title">READY TO<br><span>PLAY?</span></h2>
+   <p>Enter your private login code to unlock the machine.</p>
+   <label for="player-name">YOUR LOGIN CODE</label>
+   <input id="player-name" name="player-name" autocomplete="off" placeholder="Enter your code" maxlength="80" required>
+   <p id="name-message" class="form-message" role="status"></p><button class="play-button" type="submit">ENTER THE GAME →</button>
+  </form>
+ </div>
+</body></html>

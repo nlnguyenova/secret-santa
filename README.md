@@ -1,24 +1,13 @@
-# Secret Santa — GitHub Pages only
+# SSA Secret Santa — Neon Slot Machine
 
-A static, client-side Secret Santa website. No Supabase, database, CLI, or extra account is needed. It keeps the burgundy stripes, falling snow, and animated envelope design.
+Open `index.html` in a browser, or publish the folder contents to GitHub Pages.
 
-## Publish on GitHub Pages
+- `index.html`: structure and login overlay
+- `styles.css`: red/chrome slot-machine look, neon title, arrow, curtains and gift panel
+- `app.js`: login-code mapping, fixed recipient assignments, animated reels and gift ideas
 
-1. Upload `index.html`, `styles.css`, and `app.js` to the root of your GitHub repository, replacing the old versions.
-2. Commit the changes.
-3. In GitHub, open **Settings → Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**, select `main` and `/(root)`, and save.
-5. Open the published Pages URL after deployment completes.
+The participant images are **optional**. To add them, create `images/faces/` and save PNGs named after the recipient (e.g. `Eva.png`). The machine displays names when photos are missing.
 
-## Make a draw
+To test: open the page, use one of the codes defined at the beginning of `app.js`, then click/tap the lever. The 3 reels settle on the assigned recipient, and their gift ideas appear alongside the machine.
 
-1. Open the website and enter each participant on a separate line.
-2. Click **Generate the draw**.
-3. The organizer sees the full assignment list.
-4. Click **Copy reveal link** next to each person and privately send that link to the matching participant. They open it to reveal their recipient in the letter design.
-
-The draw algorithm shuffles the recipients until it finds a permutation where nobody gets themselves. Because each recipient appears exactly once in the shuffled list, nobody is assigned twice. Names must be unique ignoring capitalization. The page supports 2–100 participants.
-
-## Important privacy limitation
-
-GitHub Pages is static hosting, so this version has no secure server-side storage. Each reveal link contains the recipient's name in an encoded URL parameter. It is not encrypted: anyone who obtains that link can inspect or open it, so send links privately and do not post them publicly. The organizer can see every assignment. If you refresh the organizer page, the generated results are not saved; keep the assignments or links before leaving the page. To make a new draw, use **Start a new draw**.
+The login codes are client-side convenience codes, not secure authentication. All participant assignments are visible in the JavaScript source. For genuinely private draws, store assignments behind a server-side authentication system.

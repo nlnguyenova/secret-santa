@@ -21,15 +21,6 @@ const assignments = {
   "Julia456": "Elif"
 };
 
-const aliases = {
-  "Ondřej": "Ondrej",
-  "Ondra": "Ondrej",
-  "Luděk": "Ludek",
-  "Ludvík": "Ludvik",
-  "Světlana": "Svetlana",
-  "Fany": "Eva"
-};
-
 const giftIdeas = {
   "Janek": "wine, archi book, bike related stuff?",
   "Ludvik": "anything fun, wine",
@@ -60,26 +51,16 @@ const normalizeName = name =>
     .toLowerCase();
 
 const canonicalNames = Object.keys(assignments);
+const recipientNames = [...new Set(Object.values(assignments))];
 
 const assignmentLookup = new Map(
   canonicalNames.map(name => [normalizeName(name), name])
 );
 
-const aliasLookup = new Map(
-  Object.entries(aliases).map(([alias, canonical]) => [
-    normalizeName(alias), canonical
-  ])
-);
-
-
-function normalise(raw) {
-  const entered = raw.trim().toLowerCase();
-
-  const login = Object.keys(loginNames).find(
-    key => key.toLowerCase() === entered
-  );
-
-  return login ? loginNames[login] : null;
+// Login codes are the keys in `assignments`. Matching ignores case and spaces.
+function findCanonicalName(raw) {
+  const normalized = normalizeName(raw);
+  return assignmentLookup.get(normalized) || null;
 }
 
 
@@ -88,7 +69,6 @@ const nameForm = document.getElementById("name-form");
 const playerInput = document.getElementById("player-name");
 const nameMessage = document.getElementById("name-message");
 const spinButton = document.getElementById("lever-button");
-const spinLabel = document.getElementById("spin-label");
 const machineStatus = document.getElementById("machine-status");
 const resultPanel = document.getElementById("result");
 const winnerName = document.getElementById("winner-name");
@@ -114,7 +94,7 @@ function makeFace(name) {
   image.draggable = false;
 
   // Keep the face blank if a photo is missing; no initials.
-  image.onerror = () => image.remove();
+  image.onerror = () => { image.remove(); face.classList.add("no-photo"); };
 
   const label = document.createElement("div");
   label.className = "face-label";
@@ -125,8 +105,8 @@ function makeFace(name) {
 }
 
 function randomName() {
-  return canonicalNames[
-    Math.floor(Math.random() * canonicalNames.length)
+  return recipientNames[
+    Math.floor(Math.random() * recipientNames.length)
   ];
 }
 
@@ -143,8 +123,7 @@ function enterGame(name) {
   playerName = name;
   modal.hidden = true;
   spinButton.disabled = false;
-  spinLabel.textContent = "PULL FOR YOUR RECIPIENT";
-  machineStatus.textContent = `GOOD LUCK, ${name.toUpperCase()}!`;
+  machineStatus.textContent = `GOOD LUCK! PULL THE LEVER.`;
 }
 
 nameForm.addEventListener("submit", event => {
@@ -154,7 +133,7 @@ nameForm.addEventListener("submit", event => {
 
   if (!canonical) {
     nameMessage.textContent =
-      "We can't find that name. Check the spelling and try again.";
+      "Login code not found. Check the spelling and try again.";
     playerInput.focus();
     return;
   }
@@ -226,7 +205,6 @@ async function spin() {
 
   isSpinning = true;
   spinButton.disabled = true;
-  spinLabel.textContent = "THE REELS ARE SPINNING...";
   machineStatus.textContent = "FINGERS CROSSED...";
   resultPanel.hidden = true;
   winnerName.textContent = "";
@@ -250,12 +228,11 @@ async function spin() {
   spinButton.classList.remove("pulled");
   
   machineStatus.textContent = "JACKPOT?";
-  spinLabel.textContent = "YOUR DRAW IS COMPLETE";
   hasPlayed = true;
   isSpinning = false;
 }
 
-lever.addEventListener("click", pullLever);
+spinButton.addEventListener("click", spin);
 
 reels.forEach(reel => {
   const placeholder = document.createElement("div");
