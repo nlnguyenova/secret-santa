@@ -22,25 +22,24 @@ const assignments = {
 };
 
 const giftIdeas = {
-  "Janek": "wine, archi book, bike related stuff?",
-  "Ludvik": "anything fun, wine",
-  "Ondrej": "he's a mysterious man",
-  "Svetlana": "make-up, cosmetics, DIY",
-  "Valerie": "outdoorsy things?",
-  "Marie": "easy to please, no wrong answers",
-  "Sabina": "horses, horse, horse stuff",
-  "Lan": "bottle, anything silly",
-  "Jirka": "loves Italy so think along those lines",
-  "Pepa": "v easy to please, the cheaper the better, the stupider the better",
-  "Elif": "bottle, make up, her gym crush",
-  "Imge": "DIY, fun stuff, silly stuff",
-  "Yuliya": "mushrooms, boxing",
-  "Petr": "matcha, healthy foods?",
-  "Eva": "anything for Fany, bottle",
-  "Jasper": "sustainable stuff, small business, finish his house for him",
-  "Andreas": "belgian beers, workshops",
-  "Ludek": "bottle?",
-  "Julia": "workout, healthy stuff"
+  "Janek": "wine, archi book, edible underwear",
+  "Ludvik": "anything fun, wine, edible underwear",
+  "Svetlana": "make-up, cosmetics, DIY, edible underwear",
+  "Valerie": "outdoorsy things, edible underwear",
+  "Marie": "animal print, edible underwear",
+  "Sabina": "horses, horse, horse stuff, edible underwear",
+  "Lan": "bottle, anything silly, edible underwear",
+  "Jirka": "loves Italy so think along those lines, edible underwear",
+  "Pepa": "v easy to please, the cheaper the better, the stupider the better, edible underwear",
+  "Elif": "her gym crush, edible underwear",
+  "Imge": "DIY, handmade stuff, silly stuff, edible underwear",
+  "Yuliya": "mushrooms, french wine, massage, edible underwear",
+  "Petr": "matcha, healthy foods-tvaroh? edible underwear",
+  "Eva": "anything for Fany, bottle, edible underwear",
+  "Jasper": "sustainable stuff, wigs & beer, finish his house for him, edible underwear",
+  "Andreas": "belgian beers, wigs & beer, edible underwear",
+  "Ludek": "bottle, edible underwear",
+  "Julia": "workout, healthy stuff, edible underwear"
 };
 
 const normalizeName = name =>
