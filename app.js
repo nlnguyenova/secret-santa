@@ -9,7 +9,7 @@ const assignments = {
   "Lan456": "Svetlana",
   "Jirka123": "Julia",
   "Pepa456": "Marie",
-  "Elif123": "Ladka",
+  "Elif123": "Ludek",
   "Imge456": "Jasper",
   "Yuliya123": "Lan",
   "Petr456": "Yuliya",
@@ -17,8 +17,7 @@ const assignments = {
   "Jasper456": "Andreas",
   "Andreas123": "Sabina",
   "Ludek123": "Petr",
-  "Julia456": "Imge",
-  "Ladka123": "Ludek"
+  "Julia456": "Imge"
 };
 
 const giftIdeas = {
@@ -28,26 +27,47 @@ const giftIdeas = {
   "Valerie": "outdoorsy things, edible underwear",
   "Marie": "animal print, edible underwear",
   "Sabina": "horses, horse, horse stuff, edible underwear",
-  "Lan": "bottle, anything silly, edible underwear",
-  "Jirka": "loves Italy so think along those lines, edible underwear",
-  "Pepa": "v easy to please, the cheaper the better, the stupider the better, edible underwear",
+  "Lan": "wine, anything silly, edible underwear",
+  "Jirka": "loves Italy so think along those lines?, edible underwear",
+  "Pepa": "easy to please, the cheaper the better, the stupider the better, edible underwear",
   "Elif": "her gym crush, edible underwear",
   "Imge": "DIY, handmade stuff, silly stuff, edible underwear",
   "Yuliya": "mushrooms, french wine, massage, edible underwear",
   "Petr": "matcha, healthy foods-tvaroh? edible underwear",
-  "Eva": "anything for Fany, bottle, edible underwear",
+  "Eva": "THIS INCLUDES FANY, wine, edible underwear",
   "Jasper": "sustainable stuff, wigs & beer, finish his house for him, edible underwear",
   "Andreas": "belgian beers, wigs & beer, edible underwear",
   "Ludek": "bottle, edible underwear",
-  "Julia": "workout, healthy stuff, edible underwear"
+  "Julia": "workout, healthy stuff, fashion, edible underwear"
 };
 
+// Accept different spellings and capitalization
 const normalizeName = name =>
   name.normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .trim()
-    .replace(/\s+/g, " ")
+    .replace(/[\s_-]+/g, "")
     .toLowerCase();
+
+// Alternative spellings for login names
+const nameAliases = {
+  "luděk": "Ludek",
+  "luděk123": "Ludek123",
+  "ludvík": "Ludvik",
+  "ludvík123": "Ludvik123",
+  "ondřej": "Ondrej",
+  "ondřej456": "Ondrej456",
+  "jiří": "Jirka",
+  "jiří123": "Jirka123",
+  "pepa": "Pepa",
+  "pepa456": "Pepa456",
+  "julia": "Julia",
+  "julie456": "Julia456",
+  "imge": "Imge",
+  "imge456": "Imge456",
+  "yulia123": "Yuliya123",
+  "yuliya123": "Yuliya123"
+};
 
 const canonicalNames = Object.keys(assignments);
 const recipientNames = [...new Set(Object.values(assignments))];
